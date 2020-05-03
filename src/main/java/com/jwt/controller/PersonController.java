@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jwt.entity.Person;
 import com.jwt.service.PersonServices;
+import com.jwt.vo.PersonVo;
 
 @RestController
 @RequestMapping("/person")
@@ -22,28 +23,28 @@ public class PersonController {
 	
 	@RequestMapping(method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> findAll() {
+	public List<PersonVo> findAll() {
 		return service.findAll();
 	}	
 	
 	@RequestMapping(value="/{id}",
 			method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person findById(@PathVariable("id") Long id) {
+	public PersonVo findById(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}	
 	
 	@RequestMapping(method=RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person create(@RequestBody Person person) {
+	public PersonVo create(@RequestBody PersonVo person) {
 		return service.create(person);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person update(@RequestBody Person person) {
+	public PersonVo update(@RequestBody PersonVo person) {
 		return service.update(person);
 	}	
 	
