@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jwt.entity.Person;
+import com.jwt.exception.ResourceNotFoundException;
 import com.jwt.repository.PersonRepository;
 
 
@@ -24,6 +25,8 @@ public class PersonServices {
 	}
 	
 	public Person update(Person person) {
+		this.personRepository.findById(person.getId())
+		.orElseThrow(()-> new ResourceNotFoundException("Person not found"));
 		return this.personRepository.save(person);
 	}	
 	
@@ -32,7 +35,8 @@ public class PersonServices {
 	}
 	
 	public Person findById(Long id) {
-		return this.personRepository.findById(id).orElse(null);
+		return this.personRepository.findById(id)
+				.orElseThrow(()-> new ResourceNotFoundException("No data found for ID"));
 		
 	}
 	
