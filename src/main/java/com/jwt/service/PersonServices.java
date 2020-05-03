@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.jwt.entity.Person;
 import com.jwt.exception.ResourceNotFoundException;
 import com.jwt.repository.PersonRepository;
+import com.jwt.vo.PersonVo;
 
 
 @Service
@@ -18,11 +19,11 @@ public class PersonServices {
 	@Autowired
 	private PersonRepository personRepository;
 	
-	public Person create(Person person) {
+	public PersonVo create(PersonVo person) {
 		return this.personRepository.save(person);
 	}
 	
-	public Person update(Person person) {
+	public PersonVo update(PersonVo person) {
 		this.personRepository.findById(person.getId())
 		.orElseThrow(()-> new ResourceNotFoundException("Person not found"));
 		return this.personRepository.save(person);
@@ -32,22 +33,15 @@ public class PersonServices {
 		this.personRepository.deleteById(id);
 	}
 	
-	public Person findById(Long id) {
+	public PersonVo findById(Long id) {
 		return this.personRepository.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("No data found for ID"));
 		
 	}
 	
-	public List<Person> findAll() {
+	public List<PersonVo> findAll() {
 		return this.personRepository.findAll();
 		
-	}
-	@PostConstruct
-	public Person createtest() {
-		Person person = new Person();
-		person.setFirstName("oo");
-		person.setLastName("lll");
-		return this.personRepository.save(person);
 	}
 
 }
