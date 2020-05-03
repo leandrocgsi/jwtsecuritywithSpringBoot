@@ -1,10 +1,8 @@
 package com.jwt.service;
 
-
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +41,13 @@ public class PersonServices {
 	public List<Person> findAll() {
 		return this.personRepository.findAll();
 		
+	}
+	@PostConstruct
+	public Person createtest() {
+		Person person = new Person();
+		person.setFirstName("oo");
+		person.setLastName("lll");
+		return this.personRepository.save(person);
 	}
 
 }
