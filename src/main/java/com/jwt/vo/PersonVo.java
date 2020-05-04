@@ -2,19 +2,28 @@ package com.jwt.vo;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder({ "id", "address", "gender", "firstName", "lastName" })
 public class PersonVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonProperty("personId")
 	private Long id;
+	
+	@JsonProperty("first_name")
 	private String firstName;
+	
+	@JsonProperty("last_name")
 	private String lastName;
+	
+	@JsonProperty("person_address")
 	private String address;
+	
+	@JsonIgnore
 	private String gender;
 
 	public PersonVo() {
