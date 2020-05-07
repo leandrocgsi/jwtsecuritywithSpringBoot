@@ -7,11 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class PersonVo implements Serializable {
+import org.springframework.hateoas.ResourceSupport;
+
+import com.github.dozermapper.core.Mapping;
+
+public class PersonVo extends ResourceSupport implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	@Mapping("id")
+	private Long key;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -20,12 +25,12 @@ public class PersonVo implements Serializable {
 	public PersonVo() {
 	}
 
-	public Long getId() {
-		return id;
+	public Long getKey() {
+		return key;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setKey(Long key) {
+		this.key = key;
 	}
 
 	public String getFirstName() {

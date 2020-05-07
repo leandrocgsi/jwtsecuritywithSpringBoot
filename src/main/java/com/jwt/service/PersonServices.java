@@ -24,7 +24,7 @@ public class PersonServices {
 	}
 
 	public PersonVo update(PersonVo person) {
-		this.personRepository.findById(person.getId())
+		this.personRepository.findById(person.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("Person not found"));
 		Person parse = DozerEntityConverter.parseObject(person, Person.class);
 		return DozerEntityConverter.parseObject(this.personRepository.save(parse), PersonVo.class);
