@@ -15,6 +15,9 @@ import com.jwt.entity.Person;
 import com.jwt.service.PersonServices;
 import com.jwt.vo.PersonVo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+@Api(value = "Person Controller" ,description = "Person Controller Api Doc" ,tags = {"Person", ""})
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -22,19 +25,20 @@ public class PersonController {
 	@Autowired
 	private PersonServices service;
 	
+	@ApiOperation(value = "find all recorded data")
 	@RequestMapping(method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<PersonVo> findAll() {
 		return service.findAll();
 	}	
-	
+	@ApiOperation(value = "find a specific recorded data")
 	@RequestMapping(value="/{id}",
 			method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public PersonVo findById(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}	
-	
+	@ApiOperation(value = "create new data")
 	@RequestMapping(method=RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,6 +46,7 @@ public class PersonController {
 		return service.create(person);
 	}
 	
+	@ApiOperation(value = "update the recorded data")
 	@RequestMapping(method=RequestMethod.PUT,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
@@ -49,6 +54,7 @@ public class PersonController {
 		return service.update(person);
 	}	
 	
+	@ApiOperation(value = "delete the recorded data")
 	@RequestMapping(value="/{id}", 
 			method=RequestMethod.DELETE)
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {

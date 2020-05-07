@@ -42,7 +42,7 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		// TODO Auto-generated method stub
 		return new ApiInfo(
-				"RESTful API With Spring Boot 2.1.3", 
+				"RESTful API With Jwt", 
 				"Some description about your API.",
 				"v1",
 				"Terms Of Service Url",
