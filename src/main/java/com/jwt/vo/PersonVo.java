@@ -1,14 +1,15 @@
 package com.jwt.vo;
 
 import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import org.springframework.hateoas.RepresentationModel;
-
 import com.github.dozermapper.core.Mapping;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "personId", "address", "gender", "firstName", "lastName" })
 public class PersonVo extends RepresentationModel<PersonVo> implements Serializable {
 
