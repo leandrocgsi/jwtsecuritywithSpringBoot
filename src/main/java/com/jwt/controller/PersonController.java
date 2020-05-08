@@ -5,19 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jwt.entity.Person;
 import com.jwt.service.PersonServices;
 import com.jwt.vo.PersonVo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-@Api(value = "Person Controller" ,description = "Person Controller Api Doc" ,tags = {"Person", ""})
+
+//@CrossOrigin
+@Api(tags = "Person Controller")
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -25,12 +27,15 @@ public class PersonController {
 	@Autowired
 	private PersonServices service;
 	
+	//@CrossOrigin(origins = {"http://localhost:8080", "https://jobs.bdjobs.com"})
 	@ApiOperation(value = "find all recorded data")
 	@RequestMapping(method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<PersonVo> findAll() {
 		return service.findAll();
-	}	
+	}
+	
+	//@CrossOrigin(origins = {"http://localhost:8080"})
 	@ApiOperation(value = "find a specific recorded data")
 	@RequestMapping(value="/{id}",
 			method=RequestMethod.GET,
