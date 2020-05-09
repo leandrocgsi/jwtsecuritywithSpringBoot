@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebDataConfig implements WebMvcConfigurer{
 	
-	public void addCorsMapping(CorsRegistry registry) {
+	public void addCors(CorsRegistry registry) {
 		registry.addMapping("/**")
 		.allowedMethods("GET", "PUT", "DELETE" , "POST" , "PATCH", 
 				"OPTIONS", "TRACE", "CONNECT");
