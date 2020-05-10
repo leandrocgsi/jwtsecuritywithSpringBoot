@@ -73,7 +73,7 @@ public class JwtTokenProvider {
 		return null;
 
 	}
-	
+
 	public boolean validateToken(String token) {
 		try {
 			Jws<Claims> jws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
@@ -84,7 +84,7 @@ public class JwtTokenProvider {
 		} catch (Exception e) {
 			throw new InvalidJwtAuthenticationException("Expired or invalid JWT token");
 		}
-		
+
 	}
 
 }
