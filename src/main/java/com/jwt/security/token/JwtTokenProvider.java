@@ -24,8 +24,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JwtTokenProvider {
+	
+	/**
+	 * The culprit is key("") in line .rememberMe().tokenValiditySeconds(60 * 60 * 24 * 7).key(""). 
+	 * Since spring security requires a key for generating encrypted tokens,
+	 *  try passing a non-empty value for a key.
+	 */
 
-	@Value("${security.jwt.token.secret-key:secret}")
+	//@Value("${security.jwt.token.secret-key:secret}")
 	private String secretKey = "secret";
 
 	@Value("${security.jwt.token.expire-length:3600000}")

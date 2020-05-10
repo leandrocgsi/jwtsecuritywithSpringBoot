@@ -14,21 +14,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 public class JwtTokenFilter extends GenericFilterBean {
-	
+
 	@Autowired
 	private JwtTokenProvider tokenProvider;
 
-	
 	public JwtTokenFilter(JwtTokenProvider tokenProvider) {
 		this.tokenProvider = tokenProvider;
 	}
-	
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		String token = tokenProvider.resolveToken((HttpServletRequest)request);
+		String token = tokenProvider.resolveToken((HttpServletRequest) request);
 		if (token != null) {
 			Authentication authentication = tokenProvider.getAuthentication(token);
 			if (authentication != null) {
@@ -36,7 +34,7 @@ public class JwtTokenFilter extends GenericFilterBean {
 			}
 		}
 		chain.doFilter(request, response);
-		
+
 	}
 
 }

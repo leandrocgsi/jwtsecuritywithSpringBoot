@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -41,8 +42,7 @@ public class AuthController {
 
 	@ApiOperation(value = "Authenticates a user and returns a token")
 	@SuppressWarnings("rawtypes")
-	@PostMapping(value = "/signin", produces = { "application/json", "application/xml",
-			"application/x-yaml" }, consumes = { "application/json", "application/xml", "application/x-yaml" })
+	@PostMapping(value = "/signin", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity signin(@RequestBody AccountCredentialsVO data) {
 		try {
 			String username = data.getUsername();
